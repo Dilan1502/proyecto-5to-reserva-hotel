@@ -16,7 +16,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
-@RequestMapping("habilidades")
+@RequestMapping("habitaciones")
 @Tag(name = "habitaciones")
 @CrossOrigin({"*"})
 public class habitacionesController {

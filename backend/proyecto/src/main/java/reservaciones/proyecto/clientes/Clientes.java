@@ -22,4 +22,5 @@ public class Clientes {
 
     @Column(columnDefinition = "char(2)")
     private String role;
+
 }

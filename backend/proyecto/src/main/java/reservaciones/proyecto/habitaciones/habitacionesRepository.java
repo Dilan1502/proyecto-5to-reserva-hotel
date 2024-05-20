@@ -2,8 +2,8 @@ package reservaciones.proyecto.habitaciones;
 
 import java.util.List;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface habitacionesRepository extends CrudRepository <Habitaciones, Long> {
+public interface habitacionesRepository extends JpaRepository <Habitaciones, Long> {
     List<Habitaciones> findAll();
 }

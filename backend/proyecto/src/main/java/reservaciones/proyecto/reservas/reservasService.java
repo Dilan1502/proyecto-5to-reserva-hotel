@@ -10,7 +10,7 @@ public class reservasService {
      @Autowired
     reservasRepository repository;
     
-    public reservas save(reservas entity){
+    public Reservas save(Reservas entity){
         return repository.save(entity);
     }
 
@@ -18,11 +18,11 @@ public class reservasService {
         repository.deleteById(id);
     }
 
-    public reservas findById(long id){
+    public Reservas findById(long id){
         return repository.findById(id).orElse(null);
     }
 
-    public List<reservas> findAll(){
+    public List<Reservas> findAll(){
         return repository.findAll();
     }
 

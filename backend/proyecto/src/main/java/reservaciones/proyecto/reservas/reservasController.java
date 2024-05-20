@@ -25,26 +25,26 @@ public class reservasController {
 
     @Operation(summary = "Obtiene un producto por su id, Requiere producto-getOne")
     @GetMapping("/{id}/")
-    public reservas findById(@PathVariable long id){
+    public Reservas findById(@PathVariable long id){
        return service.findById(id);
     }
 
     @Operation(summary = "Obtiene todas los productos, Requiere productos-getAll")
     @GetMapping("/")
-    public List<reservas> findAll(){
+    public List<Reservas> findAll(){
         return service.findAll();
     }
 
     //Create
     @Operation(summary = "Agrega un producto, Requiere productos-save")
     @PostMapping("/")
-    public reservas save (@RequestBody reservas entity){
+    public Reservas save (@RequestBody Reservas entity){
        return service.save(entity);
     }
 
     @Operation(summary = "Actualizar campo completo de un producto, el id va en el body , Requiere productos-update")
     @PutMapping("/")
-    public reservas update (@RequestBody reservas entity){
+    public Reservas update (@RequestBody Reservas entity){
         return service.save(entity);
     }
 
