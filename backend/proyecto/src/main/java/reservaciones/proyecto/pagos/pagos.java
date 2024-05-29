@@ -1,6 +1,9 @@
 package reservaciones.proyecto.pagos;
 
 import java.math.BigDecimal;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import reservaciones.proyecto.reservas.Reservas;
@@ -23,5 +26,7 @@ public class pagos {
     private String estadoPago; 
 
     @ManyToOne
+    @JoinColumn(name = "reservas_id")
+    @JsonIgnoreProperties("pagos")
     private Reservas reserva;
 }

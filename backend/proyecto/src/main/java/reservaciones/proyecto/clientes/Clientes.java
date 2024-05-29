@@ -1,7 +1,12 @@
 package reservaciones.proyecto.clientes;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 import lombok.Data;
+import reservaciones.proyecto.reservas.Reservas;
 
 @Data
 @Entity
@@ -22,5 +27,9 @@ public class Clientes {
 
     @Column(columnDefinition = "char(2)")
     private String role;
+
+    @JsonIgnoreProperties("cliente")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+    private List<Reservas> reservas;
 
 }

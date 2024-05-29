@@ -1,6 +1,7 @@
 package reservaciones.proyecto.reservas;
 
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,6 +13,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import reservaciones.proyecto.clientes.Clientes;
 import reservaciones.proyecto.habitaciones.Habitaciones;
+import reservaciones.proyecto.pagos.pagos;
 
 @Data
 @Entity
@@ -31,6 +33,8 @@ public class Reservas {
     private Date fechaSalida;
 
     @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    @JsonIgnoreProperties("reservas")
     private Clientes cliente;
 
     @ManyToOne
@@ -38,5 +42,8 @@ public class Reservas {
     @JsonIgnoreProperties("reservas")
     private Habitaciones habitacion;
     
+    @JsonIgnoreProperties("reserva")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reserva")
+    private List<pagos> pagos;
     
 }
