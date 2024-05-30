@@ -19,8 +19,11 @@ public class Clientes {
     @Column(length=100)
     private String nombre; 
 
-    @Column(length=100)
+    @Column(length=100, unique=true)
     private String correoElectronico; 
+
+    @Column(length=50)
+    private String pass; 
 
     @Column(length=15)
     private String telefono; 

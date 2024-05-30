@@ -41,6 +41,7 @@ public class clientesController {
     @Operation(summary = "Agrega un producto, Requiere productos-save")
     @PostMapping("/")
     public Clientes save (@RequestBody Clientes entity){
+        System.out.println(entity);
        return service.save(entity);
     }
 
