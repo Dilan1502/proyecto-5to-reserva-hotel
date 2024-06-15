@@ -20,7 +20,10 @@ const routes: Routes = [
       { path: 'category', loadChildren: () => import('./modules/category/category.module').then(m => m.CategoryModule) },
     ]
   },*/
-  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) }
+  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
+  { path: 'habitaciones', loadChildren: () => import('./modules/habitaciones/habitaciones.module').then(m => m.HabitacionesModule) },
+  { path: 'info-hotel', loadChildren: () => import('./modules/info-hotel/info-hotel.module').then(m => m.InfoHotelModule) },
+  { path: 'gestion-hotel', loadChildren: () => import('./modules/gestion-hotel/gestion-hotel.module').then(m => m.GestionHotelModule) }
   
   
 ];

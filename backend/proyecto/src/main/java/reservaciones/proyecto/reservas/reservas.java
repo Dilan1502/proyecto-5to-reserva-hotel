@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import reservaciones.proyecto.clientes.Clientes;
+import reservaciones.proyecto.authz.entity.User;
 import reservaciones.proyecto.habitaciones.Habitaciones;
 import reservaciones.proyecto.pagos.pagos;
 
@@ -33,10 +33,10 @@ public class Reservas {
     private Date fechaSalida;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @JoinColumn(name = "user_id")
     @JsonIgnoreProperties("reservas")
-    private Clientes cliente;
-
+    private User user;
+    
     @ManyToOne
     @JoinColumn(name = "habitacion_id")
     @JsonIgnoreProperties("reservas")

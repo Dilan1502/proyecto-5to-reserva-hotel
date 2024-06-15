@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
  private apiUrl
- private globalUrl='http://localhost:3000'
+ private globalUrl='http://localhost:8080'
 
  constructor(private http: HttpClient,  @Inject('url') url:any) {
     this.apiUrl= `${this.globalUrl}/${url}`

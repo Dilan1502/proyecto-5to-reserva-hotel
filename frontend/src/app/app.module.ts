@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './core/http/api-prefix.interceptor';
+import { NavbarModule } from './shared/components/navbar/navbar.module';
+import { FooterModule } from './shared/components/footer/footer.module';
 
 
 
@@ -16,7 +18,9 @@ import { ApiService } from './core/http/api-prefix.interceptor';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NavbarModule,
+    FooterModule
   ],
   providers: [],
   bootstrap: [AppComponent]

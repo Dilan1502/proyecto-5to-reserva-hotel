@@ -2,6 +2,7 @@ package reservaciones.proyecto.habitaciones;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class habitacionesController {
     @Autowired
     habitacionesService service;
 
+    
     @Operation(summary = "Obtiene un producto por su id, Requiere producto-getOne")
     @GetMapping("/{id}/")
     public Habitaciones findById(@PathVariable long id){
@@ -30,6 +32,7 @@ public class habitacionesController {
     }
 
     @Operation(summary = "Obtiene todas los productos, Requiere productos-getAll")
+    @PreAuthorize("hasAuthority('habitaciones_Read')")
     @GetMapping("/")
     public List<Habitaciones> findAll(){
         return service.findAll();

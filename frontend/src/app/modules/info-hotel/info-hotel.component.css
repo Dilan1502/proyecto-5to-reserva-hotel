@@ -1,0 +1,14 @@
+.hotel-image {
+    max-height: 400px;
+    object-fit: cover;
+}
+.services-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+.testimonial {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
