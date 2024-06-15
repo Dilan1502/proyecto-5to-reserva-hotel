@@ -10,6 +10,7 @@ import { FooterModule } from './shared/components/footer/footer.module';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +21,9 @@ import { FooterModule } from './shared/components/footer/footer.module';
     AppRoutingModule,
     HttpClientModule,
     NavbarModule,
-    FooterModule
+    FooterModule,
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

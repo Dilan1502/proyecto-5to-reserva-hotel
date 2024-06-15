@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NoLoginUserComponent } from './no-login-user.component';
+import { ApiService } from 'src/app/core/http/api-prefix.interceptor';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -9,10 +11,14 @@ import { NoLoginUserComponent } from './no-login-user.component';
     NoLoginUserComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports:[
     NoLoginUserComponent
+  ],
+  providers:[
+    ApiService
   ]
 })
 export class NoLoginUserModule { }
