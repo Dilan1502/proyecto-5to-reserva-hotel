@@ -26,6 +26,7 @@ public class habitacionesController {
 
     
     @Operation(summary = "Obtiene un producto por su id, Requiere producto-getOne")
+    @PreAuthorize("hasAuthority('habitaciones_Read')")
     @GetMapping("/{id}/")
     public Habitaciones findById(@PathVariable long id){
        return service.findById(id);
@@ -40,18 +41,21 @@ public class habitacionesController {
 
     //Create
     @Operation(summary = "Agrega un producto, Requiere productos-save")
+    @PreAuthorize("hasAuthority('habitaciones_save')")
     @PostMapping("/")
     public Habitaciones save (@RequestBody Habitaciones entity){
        return service.save(entity);
     }
 
     @Operation(summary = "Actualizar campo completo de un producto, el id va en el body , Requiere productos-update")
+    @PreAuthorize("hasAuthority('habitaciones_update')")
     @PutMapping("/")
     public Habitaciones update (@RequestBody Habitaciones entity){
         return service.save(entity);
     }
 
     @Operation(summary = "Elimina un producto, el id va en la url, Requiere productos-delete")
+    @PreAuthorize("hasAuthority('habitaciones_delete')")
     @DeleteMapping("/{id}/")
     public void deeteById(@PathVariable long id){
         service.deleteById(id);
