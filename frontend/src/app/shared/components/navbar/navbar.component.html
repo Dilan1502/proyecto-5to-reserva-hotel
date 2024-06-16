@@ -16,13 +16,25 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/info-hotel">Informacion del Hotel</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/gestion-hotel">Admin Hotel</a>
-                </li>
+                <li class="nav-item" *ngIf="seccionAdmin()">
+                  <a class="nav-link" href="/gestion-hotel">Admin Hotel</a>
+              </li>
             </ul>
             <div class="d-flex">
                 <ng-container *ngIf="loginData; else noLogin">
-                    <app-login-user></app-login-user>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <div class="dropdown">
+                        <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Enrique Sebastian Mera Yela
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><button class="btn dropdown-item" (click)="cerrarSession()">Cerrar Sesión</button></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <i class="bi bi-person-fill" style="font-size: 35px;"></i>
+                    </div>
+                </div>
                 </ng-container>
                 <ng-template #noLogin>
                     <div class="dropdown">
