@@ -20,6 +20,15 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}?offset=${page}&limit=${limit}`);
   }
 
+  getUserName(username:string,token:string){
+    //(/user/{username}/)
+    const headers = new HttpHeaders({
+      'Authorization': `${token}`
+    });
+    console.log(headers)
+    return this.http.get<any[]>(`${this.apiUrl}/api/user/user/${username}/`, { headers });
+  }
+
   async login(username: string, password: string) {
     const fecher = async (url: string, token: string) => {
       return await fetch(url, {

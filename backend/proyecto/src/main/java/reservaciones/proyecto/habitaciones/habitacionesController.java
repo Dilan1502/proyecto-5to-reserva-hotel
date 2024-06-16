@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("habitaciones")
-@Tag(name = "habitaciones")
+@Tag(name = "habitacionesvddfdsfsdfdsfsdfsdfsdf")
 @CrossOrigin({"*"})
 public class habitacionesController {
     @Autowired

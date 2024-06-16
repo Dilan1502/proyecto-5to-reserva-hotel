@@ -27,7 +27,7 @@ import reservaciones.proyecto.authz.entity.User;
 import reservaciones.proyecto.authz.service.AuthorityService;
 import reservaciones.proyecto.authz.service.UserService;
 
-@Tag(name = "Controlador User (Usuarios)", description = "Tabla users")
+@Tag(name = "Controlador User (Usuafgfdgdfgdfgfdgdfgsfgs)", description = "Tabla users")
 @RestController
 @CrossOrigin({"*"})
 @RequestMapping("/api/user")
@@ -38,11 +38,19 @@ public class UserController {
     @Autowired
     AuthorityService authorityService;
 
-    @Operation(summary = "Obtiene un usuario por su id, Requiere User_Read")    
+    @Operation(summary = "Obtienfsdgsdfgsdfgdsfgdsfgsdfgsdfg")    
     @PreAuthorize("hasAuthority('User_Read')")
     @GetMapping("/{id}/")
     public User findById(@PathVariable long id){
         return userService.findById(id);
+    }
+
+    @Operation(summary = "Obtiene un usuario por su id, Requiere User_Read")  
+    @PreAuthorize("hasAuthority('User_Read')")  
+    @GetMapping("/{username}/user/")
+    public User findByUsername(@PathVariable String username){
+
+        return userService.findByUsername(username);
     }
 
     @Operation(summary = "Obtiene un listado de usuario, Requiere User_Read")    
@@ -51,6 +59,8 @@ public class UserController {
     public List<User> findAll(){
         return userService.findAll();
     }
+
+    
 
     @Operation(summary = "Guarda un usuario (body), Requiere User_Write")
     @PreAuthorize("hasAuthority('User_Write')")

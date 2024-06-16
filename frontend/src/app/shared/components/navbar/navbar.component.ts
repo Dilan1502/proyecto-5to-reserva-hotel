@@ -29,7 +29,16 @@ export class NavbarComponent implements OnInit {
   }
 
   async login() {
+    
     await this.authService.login(this.username, this.password)
+    const token:string=String(localStorage.getItem("token"));
+    const decoded = jwtDecode<ExtendedJwtPayload>(token!)
+    console.log(token)
+    this.authService.getUserName(decoded['sub'], token).subscribe(
+      e=>{
+        console.log(e)
+      }
+    )
     this.load()
   }
 
