@@ -26,7 +26,7 @@ export class ApiService {
       'Authorization': `${token}`
     });
     console.log(headers)
-    return this.http.get<any[]>(`${this.apiUrl}/api/user/user/${username}/`, { headers });
+    return this.http.post<any[]>(`${this.apiUrl}/api/user/user/`,{username:username}, { headers });
   }
 
   async login(username: string, password: string) {

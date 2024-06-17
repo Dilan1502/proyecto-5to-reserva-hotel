@@ -14,6 +14,7 @@ declare var window: any;
 export class NavbarComponent implements OnInit {
   username: string = '';
   password: string = '';
+  nombreUsuario: any = '';
   loginData: boolean | undefined;
   constructor(private authService: ApiService) { }
   modalLogin: any
@@ -31,14 +32,7 @@ export class NavbarComponent implements OnInit {
   async login() {
     
     await this.authService.login(this.username, this.password)
-    const token:string=String(localStorage.getItem("token"));
-    const decoded = jwtDecode<ExtendedJwtPayload>(token!)
-    console.log(token)
-    this.authService.getUserName(decoded['sub'], token).subscribe(
-      e=>{
-        console.log(e)
-      }
-    )
+    
     this.load()
   }
 
@@ -47,7 +41,15 @@ export class NavbarComponent implements OnInit {
   }
 
   load() {
+    
     if (localStorage.getItem("token")) {
+      const token:string=String(localStorage.getItem("token"));
+      const decoded = jwtDecode<ExtendedJwtPayload>(token!)
+      this.authService.getUserName(decoded['sub'], token).subscribe(
+        e=>{
+          this.nombreUsuario=e
+        }
+      )
       this.loginData = true
       this.cerrarModal()
     } else {

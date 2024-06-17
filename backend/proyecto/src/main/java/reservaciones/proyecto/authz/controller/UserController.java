@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -27,7 +28,9 @@ import reservaciones.proyecto.authz.entity.User;
 import reservaciones.proyecto.authz.service.AuthorityService;
 import reservaciones.proyecto.authz.service.UserService;
 
-@Tag(name = "Controlador User (Usuafgfdgdfgdfgfdgdfgsfgs)", description = "Tabla users")
+
+
+@Tag(name = "Controlador User (Usua)", description = "Tabla users")
 @RestController
 @CrossOrigin({"*"})
 @RequestMapping("/api/user")
@@ -46,11 +49,10 @@ public class UserController {
     }
 
     @Operation(summary = "Obtiene un usuario por su id, Requiere User_Read")  
-    @PreAuthorize("hasAuthority('User_Read')")  
-    @GetMapping("/{username}/user/")
-    public User findByUsername(@PathVariable String username){
-
-        return userService.findByUsername(username);
+    @PostMapping("/user/")
+    public  userName findByUsername(@RequestBody User user){
+        userName userName = new userName(userService.findByUsername(user.getUsername()).getName());
+        return userName;
     }
 
     @Operation(summary = "Obtiene un listado de usuario, Requiere User_Read")    
