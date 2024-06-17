@@ -23,6 +23,8 @@ public class Habitaciones {
     @Column(length=50)
     private String tipoHabitacion; 
 
+    private Integer nHabitaciones; 
+
     @Column(columnDefinition = "DECIMAL(10, 2)")
     private BigDecimal precio; 
 

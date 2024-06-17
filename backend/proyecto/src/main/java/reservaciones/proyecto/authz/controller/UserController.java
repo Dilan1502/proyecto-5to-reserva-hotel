@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -49,6 +48,7 @@ public class UserController {
     }
 
     @Operation(summary = "Obtiene un usuario por su id, Requiere User_Read")  
+    @PreAuthorize("hasAuthority('User_Read')")
     @PostMapping("/user/")
     public  userName findByUsername(@RequestBody User user){
         userName userName = new userName(userService.findByUsername(user.getUsername()).getName());

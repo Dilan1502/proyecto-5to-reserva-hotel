@@ -1,8 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { jwtDecode } from "jwt-decode";
 import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +15,17 @@ export class ApiService {
 
   }
 
-  get(page: any, limit: any = 6): Observable<any[]> {
-
-    return this.http.get<any[]>(`${this.apiUrl}?offset=${page}&limit=${limit}`);
+  get(ruta:string): Observable<any[]> {
+    if(localStorage.getItem('token')){
+      const headers = new HttpHeaders({
+        'Authorization': `${localStorage.getItem('token')}`
+      });
+      return this.http.get<any[]>(`${this.apiUrl}/${ruta}`,{headers});
+    }
+    return this.http.get<any[]>(`${this.apiUrl}/${ruta}`);
   }
 
   getUserName(username:string,token:string){
-    //(/user/{username}/)
     const headers = new HttpHeaders({
       'Authorization': `${token}`
     });

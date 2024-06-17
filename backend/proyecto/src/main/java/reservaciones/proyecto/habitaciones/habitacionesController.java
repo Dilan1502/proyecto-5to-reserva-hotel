@@ -26,14 +26,12 @@ public class habitacionesController {
 
     
     @Operation(summary = "Obtiene un producto por su id, Requiere producto-getOne")
-    @PreAuthorize("hasAuthority('habitaciones_Read')")
     @GetMapping("/{id}/")
     public Habitaciones findById(@PathVariable long id){
        return service.findById(id);
     }
 
     @Operation(summary = "Obtiene todas los productos, Requiere productos-getAll")
-    @PreAuthorize("hasAuthority('habitaciones_Read')")
     @GetMapping("/")
     public List<Habitaciones> findAll(){
         return service.findAll();

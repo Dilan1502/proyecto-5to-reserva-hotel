@@ -3,35 +3,60 @@
 <div class="container-fluid">
   <div class="row ms-3">
     <!--card-->
-    <div class="col-sm-3 mt-3">
-      <div class="card" style="width: 18rem; ">
-        <img src="./assets/image/habitacion 1.png" class="card-img-top"
-          alt="..." height="180">
-        <div class="card-body">
-          <h5 class="card-title">Special title treatment</h5>
-          <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#u">ver mas</button>
-        </div>
-        <div class="modal fade" id="u" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-          aria-labelledby="gLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                ...
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Understood</button>
+    <ng-container *ngFor="let item of dataHabitaciones">
+      <div class="col-sm-3 mt-3">
+        <div class="card" style="width: 18rem; ">
+          <img src="./assets/image/habitacion 1.png" class="card-img-top"
+            alt="..." height="180">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.nombre }}</h5>
+
+              <ul class="card-text">
+                <li>Habitaciones disponibles: {{ item.nhabitaciones}}</li>
+                <li>precio: {{ item.precio }}</li>
+                <li>tipo: {{ item.tipoHabitacion}}</li>
+              </ul>
+              <button class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item.tipoHabitacion">Reservar</button>
+          </div>
+          <div class="modal fade" id="{{ item.tipoHabitacion }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="gLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Reserva {{ item.nombre }}</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <form action="">
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Fecha de salida</span>
+                      <input type="date" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">Monto del pago</span>
+                      <input type="text" class="form-control" placeholder="Monto" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                      <label class="input-group-text" for="inputGroupSelect01">Metodo de pago</label>
+                      <select class="form-select" id="inputGroupSelect01">
+                        <option selected>Opciones...</option>
+                        <option value="1">Targeta</option>
+                        <option value="2">Efectivo</option>
+                      </select>
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Reservar</button>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
+    
     <!--end-card-->
   </div>
 </div>

@@ -1,6 +1,5 @@
 INSERT INTO authorities (name, endpoint) values ('User_Write', 'POST:/api/user/');
-INSERT INTO authorities (name, endpoint) values ('User_Read', 'GET:/api/user/');
-INSERT INTO authorities (name, endpoint) values ('UserById_Read', 'GET:/api/user/{id}/');
+INSERT INTO authorities (name, endpoint) values ('User_Read', 'User_Read');
 INSERT INTO authorities (name, endpoint) values ('User_Delete', 'DELETE:/api/user/{id}/');
 INSERT INTO authorities (name, endpoint) values ('User_Update', 'PUT:/api/user/{id}/');
 INSERT INTO authorities (name, endpoint) values ('User_PartialUpdate', 'PATCH:/api/user/{id}/');
@@ -22,11 +21,14 @@ INSERT INTO authorities (name, endpoint) values ('AuthorityByUser_Read', 'GET:/a
 
 /*autorizaciones sistema*/
 INSERT INTO authorities (name, endpoint) values ('habitaciones_save', 'habitaciones_save');
+INSERT INTO authorities (name, endpoint) values ('habitaciones_update', 'habitaciones_update');
+INSERT INTO authorities (name, endpoint) values ('habitaciones_delete', 'habitaciones_delete');
 
 
 INSERT INTO roles (name) values ('ROLE_ADMIN');
-
+INSERT INTO roles (name) values ('ROLE_CLIENT');
 INSERT INTO roles_authorities (role_id, authority_id) (select (SELECT id FROM roles where name = 'ROLE_ADMIN')  AS role_id, e.id from authorities e );
+INSERT INTO roles_authorities (role_id, authority_id) VALUES (2,2);
 
 INSERT INTO users (name, username, password, looked, expired, enabled) VALUES ('Admin', 'admin', '$2a$10$TwROhi2MZsOTt8igkE7Yyec0WfjK7NlgdX9apOu0b6cY4SxzHLvCq', false, false, true);
 
