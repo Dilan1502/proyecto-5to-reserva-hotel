@@ -6,8 +6,8 @@ import { GestionHotelComponent } from './gestion-hotel.component';
 import { HeadTitleModule } from 'src/app/shared/components/head-title/head-title.module';
 import { GestionUsuariosComponent } from './gestion-usuarios/gestion-usuarios.component';
 import { GestionHabitacionesComponent } from './gestion-habitaciones/gestion-habitaciones.component';
-import { GestionPagosComponent } from './gestion-pagos/gestion-pagos.component';
 import { GestionReservasComponent } from './gestion-reservas/gestion-reservas.component';
+
 
 
 @NgModule({
@@ -15,8 +15,7 @@ import { GestionReservasComponent } from './gestion-reservas/gestion-reservas.co
     GestionHotelComponent,
     GestionUsuariosComponent,
     GestionHabitacionesComponent,
-    GestionPagosComponent,
-    GestionReservasComponent
+    GestionReservasComponent,
   ],
   imports: [
     CommonModule,

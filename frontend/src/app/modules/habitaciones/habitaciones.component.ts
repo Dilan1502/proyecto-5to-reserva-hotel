@@ -8,6 +8,7 @@ import { ApiService } from 'src/app/core/http/api-prefix.interceptor';
 })
 export class HabitacionesComponent implements OnInit {
   dataHabitaciones:any[] | undefined;
+
   constructor(private apiService: ApiService){}
   ngOnInit(): void {
     this.carga()
@@ -20,5 +21,12 @@ export class HabitacionesComponent implements OnInit {
         console.log(e)
       }
     )
+  }
+
+  comprobacion(){
+    if(localStorage.getItem('token')){
+      return true;
+    }
+    return false;
   }
 }

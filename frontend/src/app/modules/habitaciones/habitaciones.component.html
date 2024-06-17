@@ -2,6 +2,13 @@
 
 <div class="container-fluid">
   <div class="row ms-3">
+    <ng-container *ngIf="comprobacion() == false">
+      <div class="alert alert-warning" role="alert">
+        Inicia Sesion o registrate Para poder Reservar una habitacion 
+      </div>
+    </ng-container>
+    
+    
     <!--card-->
     <ng-container *ngFor="let item of dataHabitaciones">
       <div class="col-sm-3 mt-3">
@@ -16,7 +23,7 @@
                 <li>precio: {{ item.precio }}</li>
                 <li>tipo: {{ item.tipoHabitacion}}</li>
               </ul>
-              <button class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item.tipoHabitacion">Reservar</button>
+              <button *ngIf="comprobacion()" class="btn btn-primary" data-bs-toggle="modal" [attr.data-bs-target]="'#'+item.tipoHabitacion">Reservar</button>
           </div>
           <div class="modal fade" id="{{ item.tipoHabitacion }}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
             aria-labelledby="gLabel" aria-hidden="true">

@@ -8,11 +8,11 @@
                 <div class="card-body">
                     <h5 class="card-title">Gestion de Usuarios</h5>
                     <p class="card-text">Se podra agregar, visualizar, editar y eliminar Administradores</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#u">ver mas</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#user" (click)="cargaUsuarios()">Ver</button>
                 </div>
-                <div class="modal fade" id="u" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                <div class="modal fade" id="user" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="gLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Gestion de Usuarios</h1>
@@ -34,38 +34,39 @@
                                         </tr>
                                     </thead>
                                     <tbody class="text-center">
-                                        <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Mark</td>
-                                            <td>rol</td>
+                                        <tr *ngFor="let item of paginatedItems">
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.name }}</td>
+                                            <td>{{ item.username }}</td>
+                                            <td>
+                                                <span *ngIf="item.roles && item.roles.length > 0">{{ item.roles[0].name }}</span>
+                                                <span *ngIf="!item.roles || item.roles.length === 0">No roles</span>
+                                            </td>
                                             <td>
                                                 <button class="btn btn-sm bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#add"></button>
                                                 <button class="btn btn-sm bi bi-trash3-fill" data-bs-toggle="modal" data-bs-target="#add"></button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                        </tr>
                                     </tbody>
                                 </table>
-                                <nav class="d-flex justify-content-center">
+                                <nav class="d-flex justify-content-center" aria-label="Page navigation example">
                                     <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <a class="page-link">Previous</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                        <li class="page-item active" aria-current="page">
-                                            <a class="page-link" href="#">2</a>
-                                        </li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#">Next</a>
-                                        </li>
+                                      <li class="page-item" [class.disabled]="currentPage === 1">
+                                        <a class="page-link point"  (click)="goToPage(currentPage - 1)" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+                                        <a class="page-link point"  (click)="goToPage(page)">{{ page }}</a>
+                                      </li>
+                                      <li class="page-item " [class.disabled]="currentPage === totalPages">
+                                        <a class="page-link point"  (click)="goToPage(currentPage + 1)" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                      </li>
                                     </ul>
-                                </nav>
+                                  </nav>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -83,24 +84,68 @@
                 <img src="./assets/image/adminitrar-habitaciones.png" class="card-img-top" alt="..." height="180">
                 <div class="card-body">
                     <h5 class="card-title">Gestion de Habitaciones</h5>
-                    <p class="card-text">Se podra agregar, visualizar, editar y eliminar habitaciones</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#u">ver mas</button>
+                    <p class="card-text">Se podra agregar, visualizar, editar y eliminar Administradores</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#habitacion" (click)="cargahabitacion()">Ver</button>
                 </div>
-                <div class="modal fade" id="u" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                <div class="modal fade"  id="habitacion" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="gLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Gestion de habitaciones</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                ...
+                            <div class="modal-body" >
+
+                                <button class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#add">Agregar Habitacion</button>
+                                <table class="table">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">nombre</th>
+                                            <th scope="col">N disponible</th>
+                                            <th scope="col">precio</th>
+                                            <th >Tipo habitacion</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr *ngFor="let item of paginatedItems">
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.nombre }}</td>
+                                            <td>{{ item.nhabitaciones }}</td>
+                                            <td>{{ item.precio }}</td>
+                                            <td>{{ item.tipoHabitacion }}</td>
+                                            <td>
+                                                <button class="btn btn-sm bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#add"></button>
+                                                <button class="btn btn-sm bi bi-trash3-fill" data-bs-toggle="modal" data-bs-target="#add"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <nav class="d-flex justify-content-center" aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                      <li class="page-item" [class.disabled]="currentPage === 1">
+                                        <a class="page-link point"  (click)="goToPage(currentPage - 1)" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+                                        <a class="page-link point"  (click)="goToPage(page)">{{ page }}</a>
+                                      </li>
+                                      <li class="page-item " [class.disabled]="currentPage === totalPages">
+                                        <a class="page-link point"  (click)="goToPage(currentPage + 1)" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>
@@ -116,19 +161,64 @@
                 <div class="card-body">
                     <h5 class="card-title">Gestion de Pagos</h5>
                     <p class="card-text">Se podra agregar, visualizar, editar y eliminar Pagos</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#u">ver mas</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pagos" (click)="cargapagos()">Ver</button>
                 </div>
-                <div class="modal fade" id="u" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                <div class="modal fade" id="pagos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="gLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                ...
+                            <div class="modal-body" >
+
+                                <button class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#add">Agregar Pago</button>
+                                <table class="table">
+                                    <thead class="text-center">
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">nombre</th>
+                                            <th scope="col">N disponible</th>
+                                            <th scope="col">precio</th>
+                                            <th >Tipo habitacion</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                        <tr *ngFor="let item of paginatedItems">
+                                            <td>{{ item.id }}</td>
+                                            <td>{{ item.nombre }}</td>
+                                            <td>{{ item.nhabitaciones }}</td>
+                                            <td>{{ item.precio }}</td>
+                                            <td>{{ item.tipoHabitacion }}</td>
+                                            <td>
+                                                <button class="btn btn-sm bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#add"></button>
+                                                <button class="btn btn-sm bi bi-trash3-fill" data-bs-toggle="modal" data-bs-target="#add"></button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <nav class="d-flex justify-content-center" aria-label="Page navigation example">
+                                    <ul class="pagination">
+                                      <li class="page-item" [class.disabled]="currentPage === 1">
+                                        <a class="page-link point"  (click)="goToPage(currentPage - 1)" aria-label="Previous">
+                                          <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                      </li>
+                                      <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+                                        <a class="page-link point"  (click)="goToPage(page)">{{ page }}</a>
+                                      </li>
+                                      <li class="page-item " [class.disabled]="currentPage === totalPages">
+                                        <a class="page-link point"  (click)="goToPage(currentPage + 1)" aria-label="Next">
+                                          <span aria-hidden="true">&raquo;</span>
+                                        </a>
+                                      </li>
+                                    </ul>
+                                  </nav>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -148,23 +238,72 @@
                 <div class="card-body">
                     <h5 class="card-title">Gestion de Reservas</h5>
                     <p class="card-text">Se podra agregar, visualizar, editar y eliminar Reservas</p>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#u">ver mas</button>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reservas" (click)="cargareservas()">Ver</button>
                 </div>
-                <div class="modal fade" id="u" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                <div class="modal fade" id="reservas" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
                     aria-labelledby="gLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-xl">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="staticBackdropLabel">Gestion de Reservas</h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                ...
+                                <button class="btn btn-outline-info btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#add">Agregar Reserva</button>
+                            <table class="table">
+                                <thead class="text-center">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">fecha Entrada</th>
+                                        <th scope="col">fecha Salida</th>
+                                        <th scope="col">Usuario</th>
+                                        <th scope="col">habitacion</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center">
+                                    <tr *ngFor="let item of paginatedItems">
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.fechaEntrada }}</td>
+                                        <td>{{ item.fechaSalida }}</td>
+                                        <td>
+                                            <span *ngIf="item.user">{{ item.user.name }}</span>
+                                            <span *ngIf="!item.user">sin usuario</span>
+                                        </td>
+                                        <td>
+                                            <span *ngIf="item.habitacion">{{ item.habitacion.nombre }}</span>
+                                            <span *ngIf="!item.habitacion">sin habitacion</span>
+                                        </td>
+                                        
+                                        <td>
+                                            <button class="btn btn-sm bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#add"></button>
+                                            <button class="btn btn-sm bi bi-trash3-fill" data-bs-toggle="modal" data-bs-target="#add"></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <nav class="d-flex justify-content-center" aria-label="Page navigation example">
+                                <ul class="pagination">
+                                  <li class="page-item" [class.disabled]="currentPage === 1">
+                                    <a class="page-link point"  (click)="goToPage(currentPage - 1)" aria-label="Previous">
+                                      <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                  </li>
+                                  <li class="page-item" *ngFor="let page of pages" [class.active]="currentPage === page">
+                                    <a class="page-link point"  (click)="goToPage(page)">{{ page }}</a>
+                                  </li>
+                                  <li class="page-item " [class.disabled]="currentPage === totalPages">
+                                    <a class="page-link point"  (click)="goToPage(currentPage + 1)" aria-label="Next">
+                                      <span aria-hidden="true">&raquo;</span>
+                                    </a>
+                                  </li>
+                                </ul>
+                              </nav>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Understood</button>
                             </div>
                         </div>
                     </div>
