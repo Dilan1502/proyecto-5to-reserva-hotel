@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  app:
+    image: 'proyecto:1'
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+    ports:
+      - 8080:8080
+    networks:
+      - desarrollo
+  db:
+    image: 'postgres:15-bullseye'
+    environment:
+      - POSTGRES_DB=hotel
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - pg_hotel_data:/var/lib/postgresql/data/pgdata
+    networks:
+      - desarrollo
+
+volumes:
+  pg_hotel_data:
+    external: true
+
+networks:
+  desarrollo:
+    external: true

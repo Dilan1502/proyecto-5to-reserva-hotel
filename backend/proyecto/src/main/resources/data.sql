@@ -31,6 +31,7 @@ INSERT INTO roles_authorities (role_id, authority_id) (select (SELECT id FROM ro
 INSERT INTO roles_authorities (role_id, authority_id) VALUES (2,2);
 
 INSERT INTO users (name, username, password, looked, expired, enabled) VALUES ('Admin', 'admin', '$2a$10$TwROhi2MZsOTt8igkE7Yyec0WfjK7NlgdX9apOu0b6cY4SxzHLvCq', false, false, true);
-
+INSERT INTO users (name, username, password, looked, expired, enabled) VALUES ('Sebastian Mera', 'sebas', '$2a$10$TwROhi2MZsOTt8igkE7Yyec0WfjK7NlgdX9apOu0b6cY4SxzHLvCq', false, false, true);
 INSERT INTO users_roles (user_id, role_id) VALUES ((SELECT id FROM users where username = 'admin'), (SELECT id FROM roles where name = 'ROLE_ADMIN'));
+INSERT INTO users_roles (user_id, role_id) VALUES (2,2);
 
