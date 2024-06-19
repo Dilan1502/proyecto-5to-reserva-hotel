@@ -17,38 +17,38 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
 @RequestMapping("reservas")
-@Tag(name = "reservas")
+@Tag(name = "contolador reservas")
 @CrossOrigin({"*"})
 public class reservasController {
     @Autowired
     reservasService service;
 
-    @Operation(summary = "Obtiene un producto por su id, Requiere producto-getOne")
+    @Operation(summary = "Obtiene una reserva por su id")
     @GetMapping("/{id}/")
     public Reservas findById(@PathVariable long id){
        return service.findById(id);
     }
 
-    @Operation(summary = "Obtiene todas los productos, Requiere productos-getAll")
+    @Operation(summary = "Obtiene todas los reservas")
     @GetMapping("/")
     public List<Reservas> findAll(){
         return service.findAll();
     }
 
     //Create
-    @Operation(summary = "Agrega un producto, Requiere productos-save")
+    @Operation(summary = "Agrega una reserva")
     @PostMapping("/")
     public Reservas save (@RequestBody Reservas entity){
        return service.save(entity);
     }
 
-    @Operation(summary = "Actualizar campo completo de un producto, el id va en el body , Requiere productos-update")
+    @Operation(summary = "Actualizar campo completo de una reserva, el id va en el body")
     @PutMapping("/")
     public Reservas update (@RequestBody Reservas entity){
         return service.save(entity);
     }
 
-    @Operation(summary = "Elimina un producto, el id va en la url, Requiere productos-delete")
+    @Operation(summary = "Elimina una reserva, el id va en la url")
     @DeleteMapping("/{id}/")
     public void deeteById(@PathVariable long id){
         service.deleteById(id);

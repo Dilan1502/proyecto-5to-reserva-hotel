@@ -18,7 +18,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import reservaciones.proyecto.authz.entity.Role;
 import reservaciones.proyecto.authz.service.RoleService;
 
-@Tag(name = "Controlador Role (Roles)", description = "Tabla roles")
+@Tag(name = "Controlador Roles", description = "Tabla roles")
 @RestController
 @CrossOrigin({ "*" })
 @RequestMapping("/api/role")

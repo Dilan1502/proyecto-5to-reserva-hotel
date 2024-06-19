@@ -22,7 +22,7 @@ import reservaciones.proyecto.authz.service.AuthorityService;
 @RestController
 @CrossOrigin({"*"})
 @RequestMapping("/api/authority")
-@Tag(name = "Controlador Authority (Permisos)", description = "Tabla authorities")
+@Tag(name = "Controlador Permisos", description = "Tabla authorities")
 public class AuthorityController {
 
     @Autowired
@@ -43,7 +43,7 @@ public class AuthorityController {
     }
 
     @Operation(summary = "Guarda un permiso (enviado por el body), Requiere Authority_Write")
-    //@PreAuthorize("hasAuthority('Authority_Write')")
+    @PreAuthorize("hasAuthority('Authority_Write')")
     @PostMapping("/")
     public Authority save(@RequestBody Authority authority){
         return authorityService.save(authority);
